@@ -2,6 +2,12 @@
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 
+--python provider with virtualenv
+local venv = vim.fn.system 'pyenv which python'
+--vim.g.python3_host_prog = '/home/dweikert/repos/pyenv/versions/pynvim/bin/python'
+--detect current env
+vim.g.python3_host_prog = venv
+
 -- Set highlight on search
 -- vim.o.hlsearch = false
 --  For more options, you can see `:help option-list`
