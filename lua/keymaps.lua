@@ -60,3 +60,7 @@ vim.keymap.set({ 'n' }, '<Leader>ww', '<cmd>w<cr><esc>', { desc = 'Save file' })
 -- vim: ts=2 sts=2 sw=2 et
 
 vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y', { desc = 'Copy to clipboard' })
+
+vim.keymap.set({ 'n' }, '\\', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' })
+vim.keymap.set({ 'n' }, '<leader>gs', ':Neotree float git_status<CR>', { desc = 'NeoTree git status' })
+vim.keymap.set({ 'n' }, '<leader>b', ':Neotree toggle show buffers right<CR>', { desc = 'NeoTree buffers' })
