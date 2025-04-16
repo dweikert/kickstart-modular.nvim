@@ -64,3 +64,5 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y', { desc = 'Copy to clipboard' })
 vim.keymap.set({ 'n' }, '\\', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' })
 vim.keymap.set({ 'n' }, '<leader>gs', ':Neotree float git_status<CR>', { desc = 'NeoTree git status' })
 vim.keymap.set({ 'n' }, '<leader>b', ':Neotree toggle show buffers right<CR>', { desc = 'NeoTree buffers' })
+
+vim.keymap.set({ 'n' }, '<leader>ss', ':ClangdSwitchSourceHeader<CR>', { desc = 'Cland Switch Source And Header' })
