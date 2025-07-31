@@ -103,10 +103,14 @@ return {
         }
       end, { desc = '[S]earch [/] in Open Files' })
 
-      -- Shortcut for searching your Neovim configuration files
+      -- shortcut for searching your neovim configuration files
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[S]earch [N]eovim files' })
+      end, { desc = '[s]earch [n]eovim files' })
+      -- search repos folder
+      vim.keymap.set('n', '<leader>sR', function()
+        builtin.find_files { cwd = '~/repos/' }
+      end, { desc = '[s]earch [R]epositories' })
     end,
   },
 }
