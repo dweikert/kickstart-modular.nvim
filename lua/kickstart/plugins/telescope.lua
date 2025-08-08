@@ -111,6 +111,10 @@ return {
       vim.keymap.set('n', '<leader>sR', function()
         builtin.find_files { cwd = '~/repos/' }
       end, { desc = '[s]earch [R]epositories' })
+      vim.keymap.set('n', '<leader>sc', function()
+        local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+        builtin.find_files { cwd = git_root }
+      end, { desc = '[s]earch [R]epositories' })
     end,
   },
 }
