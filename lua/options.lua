@@ -90,8 +90,12 @@ vim.g.clipboard = nil
 
 -- Don't force unnamed/unnamedplus globally
 vim.opt.clipboard = {}
-
+-- Don't wait for OSC52 response (tmux won't send one)
+vim.g.osc52_timeout = 0
 -- force osc52
+local function paste()
+  return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' }
+end
 vim.g.clipboard = {
   name = 'OSC 52',
   copy = {
@@ -99,7 +103,11 @@ vim.g.clipboard = {
     ['*'] = require('vim.ui.clipboard.osc52').copy '*',
   },
   paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste '+',
-    ['*'] = require('vim.ui.clipboard.osc52').paste '*',
+    ['+'] = paste,
+    ['*'] = paste,
   },
+  -- paste = {
+  --   ['+'] = require('vim.ui.clipboard.osc52').paste '+',
+  --   ['*'] = require('vim.ui.clipboard.osc52').paste '*',
+  -- },
 }
