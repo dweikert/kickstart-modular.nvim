@@ -13,7 +13,7 @@ return {
     end,
     desc = 'LSP: Disable hover capability from Ruff',
   }),
-  cmd = { 'ruff-lsp' },
+  cmd = { 'ruff', 'server' },
   filetypes = { 'python' },
   init_options = {
     settings = {
