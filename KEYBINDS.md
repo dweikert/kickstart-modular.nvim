@@ -108,6 +108,128 @@ Leader key: `<Space>`
 | `<leader>tw` | n | Toggle word diff |
 | `ih` | o/x | Select hunk (text object) |
 
+## Mini Surround — Surrounding Characters
+
+| Character | Result |
+|-----------|--------|
+| `)` or `b` | `(text)` — no spaces |
+| `(` | `( text )` — with spaces |
+| `]` | `[text]` — no spaces |
+| `[` | `[ text ]` — with spaces |
+| `}` or `B` | `{text}` — no spaces |
+| `{` | `{ text }` — with spaces |
+| `>` | `<text>` — no spaces |
+| `<` | `< text >` — with spaces |
+| `'` | `'text'` |
+| `"` | `"text"` |
+| `` ` `` | `` `text` `` |
+| `t` | `<tag>text</tag>` — tag name prompted |
+| `f` | `name(text)` — function name prompted |
+
+## Mini Surround — Add (sa)
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `saiw)` | n | Surround inner word with `()` |
+| `saiw(` | n | Surround inner word with `( )` (spaces inside) |
+| `saiw"` | n | Surround inner word with `""` |
+| `saiw'` | n | Surround inner word with `''` |
+| ``saiw` `` | n | Surround inner word with backticks |
+| `saiw]` | n | Surround inner word with `[]` |
+| `saiw}` | n | Surround inner word with `{}` |
+| `saiw>` | n | Surround inner word with `<>` |
+| `saiWt` | n | Surround inner WORD with HTML tag (prompted) |
+| `saiWf` | n | Surround inner WORD with function call (prompted) |
+| `saaw)` | n | Surround around word (incl. trailing space) with `()` |
+| `sa2w)` | n | Surround next 2 words with `()` |
+| `sa$"` | n | Surround to end of line with `""` |
+| `sae"` | n | Surround to end of word with `""` |
+| `saip)` | n | Surround inner paragraph with `()` |
+| `saap)` | n | Surround around paragraph with `()` |
+| `sais)` | n | Surround inner sentence with `()` |
+| `sai')` | n | Surround contents of `''` with `()` |
+| `sai")` | n | Surround contents of `""` with `()` |
+| ``sai`)`` | n | Surround contents of backticks with `()` |
+| `sai))` | n | Surround contents of `()` with `()` |
+| `sai])` | n | Surround contents of `[]` with `()` |
+| `sai})` | n | Surround contents of `{}` with `()` |
+| `sait)` | n | Surround inner tag contents with `()` |
+| `saif)` | n | Surround inner function args with `()` |
+| `sa2j)` | n | Surround current + next 2 lines with `()` |
+| `sa)` | x | Surround selection with `()` |
+| `sa"` | x | Surround selection with `""` |
+| `sa'` | x | Surround selection with `''` |
+| ``sa` `` | x | Surround selection with backticks |
+| `sa]` | x | Surround selection with `[]` |
+| `sa}` | x | Surround selection with `{}` |
+| `sa>` | x | Surround selection with `<>` |
+| `sat` | x | Surround selection with HTML tag (prompted) |
+| `saf` | x | Surround selection with function call (prompted) |
+
+## Mini Surround — Delete (sd)
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `sd)` | n | Delete surrounding `()` |
+| `sd(` | n | Delete surrounding `( )` (with spaces) |
+| `sd"` | n | Delete surrounding `""` |
+| `sd'` | n | Delete surrounding `''` |
+| ``sd` `` | n | Delete surrounding backticks |
+| `sd]` | n | Delete surrounding `[]` |
+| `sd[` | n | Delete surrounding `[ ]` (with spaces) |
+| `sd}` | n | Delete surrounding `{}` |
+| `sd{` | n | Delete surrounding `{ }` (with spaces) |
+| `sd>` | n | Delete surrounding `<>` |
+| `sdt` | n | Delete surrounding HTML tag |
+| `sdf` | n | Delete surrounding function call parens |
+
+## Mini Surround — Replace (sr)
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `sr)"` | n | Replace `()` with `""` |
+| `sr)'` | n | Replace `()` with `''` |
+| ``sr)` `` | n | Replace `()` with backticks |
+| `sr])` | n | Replace `[]` with `()` |
+| `sr})` | n | Replace `{}` with `()` |
+| `sr>)` | n | Replace `<>` with `()` |
+| `sr"'` | n | Replace `""` with `''` |
+| `sr'"` | n | Replace `''` with `""` |
+| ``sr"` `` | n | Replace `""` with backticks |
+| `srt)` | n | Replace HTML tag with `()` |
+| `srt"` | n | Replace HTML tag with `""` |
+| `sr)t` | n | Replace `()` with HTML tag (prompted) |
+| `sr"t` | n | Replace `""` with HTML tag (prompted) |
+| `sr)f` | n | Replace `()` with function call (prompted) |
+| `srf)` | n | Replace function call parens with `()` |
+| `srtt` | n | Replace HTML tag with different tag (prompted) |
+| `srff` | n | Replace function name (prompted) |
+
+## Mini Surround — Find & Highlight
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `sf)` | n | Jump to next `()` surrounding (rightward) |
+| `sF)` | n | Jump to next `()` surrounding (leftward) |
+| `sf"` | n | Jump to next `""` surrounding (rightward) |
+| `sF"` | n | Jump to next `""` surrounding (leftward) |
+| `sf'` | n | Jump to next `''` surrounding (rightward) |
+| `sF'` | n | Jump to next `''` surrounding (leftward) |
+| ``sf` `` | n | Jump to next backtick surrounding (rightward) |
+| `sf]` | n | Jump to next `[]` surrounding (rightward) |
+| `sf}` | n | Jump to next `{}` surrounding (rightward) |
+| `sft` | n | Jump to next HTML tag (rightward) |
+| `sFt` | n | Jump to next HTML tag (leftward) |
+| `sff` | n | Jump to next function call surrounding (rightward) |
+| `sh)` | n | Highlight surrounding `()` |
+| `sh"` | n | Highlight surrounding `""` |
+| `sh'` | n | Highlight surrounding `''` |
+| `sh]` | n | Highlight surrounding `[]` |
+| `sh}` | n | Highlight surrounding `{}` |
+| `sht` | n | Highlight surrounding HTML tag |
+| `shf` | n | Highlight surrounding function call |
+| `sn` | n | Update n_lines (expand search range for surroundings) |
+
 ## Completion (blink-cmp)
 
 | Key | Action |
