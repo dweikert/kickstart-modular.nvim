@@ -37,6 +37,8 @@ vim.o.smartcase = true
 -- Keep signcolumn on by default
 vim.o.signcolumn = 'yes'
 
+vim.opt.colorcolumn = '88'
+
 -- Decrease update time
 vim.o.updatetime = 250
 
@@ -85,9 +87,7 @@ vim.opt.clipboard = {}
 -- Don't wait for OSC52 response (tmux won't send one)
 vim.g.osc52_timeout = 0
 -- force osc52
-local function paste()
-  return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' }
-end
+local function paste() return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' } end
 vim.g.clipboard = {
   name = 'OSC 52',
   copy = {
