@@ -17,7 +17,7 @@ return {
     -- your replacement picker by requiring it explicitly (e.g. 'custom.plugins.snacks')
 
     -- Note: If you customize your config for yourself,
-    -- it’s best to remove the Telescope plugin config entirely
+    -- it's best to remove the Telescope plugin config entirely
     -- instead of just disabling it here, to keep your config clean.
     enabled = true,
     event = 'VimEnter',
@@ -85,8 +85,8 @@ return {
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>SS', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
@@ -151,18 +151,8 @@ return {
         { desc = '[S]earch [/] in Open Files' }
       )
 
-      -- shortcut for searching your neovim configuration files
-      vim.keymap.set('n', '<leader>sn', function()
-        builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[s]earch [n]eovim files' })
-      -- search repos folder
-      vim.keymap.set('n', '<leader>sR', function()
-        builtin.find_files { cwd = '~/repos/' }
-      end, { desc = '[s]earch [R]epositories' })
-      vim.keymap.set('n', '<leader>sc', function()
-        local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
-        builtin.find_files { cwd = git_root }
-      end, { desc = '[s]earch [R]epositories' })
+      -- Shortcut for searching your Neovim configuration files
+      vim.keymap.set('n', '<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config' } end, { desc = '[S]earch [N]eovim files' })
     end,
   },
 }

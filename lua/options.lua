@@ -1,16 +1,13 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
-
--- Set highlight on search
--- vim.o.hlsearch = false
 --  For more options, you can see `:help option-list`
 
 -- Make line numbers default
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
+-- vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -36,8 +33,6 @@ vim.o.smartcase = true
 
 -- Keep signcolumn on by default
 vim.o.signcolumn = 'yes'
-
-vim.opt.colorcolumn = '88'
 
 -- Decrease update time
 vim.o.updatetime = 250
@@ -75,31 +70,3 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 -- vim: ts=2 sts=2 sw=2 et
-
-vim.opt.bg = 'dark'
-vim.opt.termguicolors = true
-
--- Make sure Neovim doesn't try to use remote xclip/xsel
-vim.g.clipboard = nil
-
--- Don't force unnamed/unnamedplus globally
-vim.opt.clipboard = {}
--- Don't wait for OSC52 response (tmux won't send one)
-vim.g.osc52_timeout = 0
--- force osc52
-local function paste() return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' } end
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy '+',
-    ['*'] = require('vim.ui.clipboard.osc52').copy '*',
-  },
-  paste = {
-    ['+'] = paste,
-    ['*'] = paste,
-  },
-  -- paste = {
-  --   ['+'] = require('vim.ui.clipboard.osc52').paste '+',
-  --   ['*'] = require('vim.ui.clipboard.osc52').paste '*',
-  -- },
-}

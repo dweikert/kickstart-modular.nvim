@@ -1,18 +1,8 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
---open netrw
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'open netrw' })
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
+-- Clear highlights on search when pressing <Esc> in normal mode
+--  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic Config & Keymaps
@@ -74,14 +64,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
-vim.keymap.set('i', 'jj', '<Esc>')
-vim.keymap.set({ 'n' }, '<Leader>ww', '<cmd>w<cr><esc>', { desc = 'Save file' })
 -- vim: ts=2 sts=2 sw=2 et
-
-vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y', { desc = 'Copy to clipboard' })
-
-vim.keymap.set({ 'n' }, '\\', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' })
-vim.keymap.set({ 'n' }, '<leader>gs', ':Neotree float git_status<CR>', { desc = 'NeoTree git status' })
-vim.keymap.set({ 'n' }, '<leader>b', ':Neotree toggle show buffers right<CR>', { desc = 'NeoTree buffers' })
-
-vim.keymap.set({ 'n' }, '<leader>ss', ':LspClangdSwitchSourceHeader<CR>', { desc = 'Cland Switch Source And Header' })
