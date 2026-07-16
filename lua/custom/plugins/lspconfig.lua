@@ -15,8 +15,13 @@ return {
         },
       },
     },
-    -- This config runs after the kickstart lspconfig config.
-    config = function()
+    -- lazy.nvim does NOT merge `config` across specs -- the last fragment shadows the rest.
+    -- Custom plugins import last, so this must call kickstart's config explicitly or the
+    -- kickstart-lsp-attach augroup (grn/gra/grD/<leader>th) and the lua_ls/stylua setup
+    -- are all silently dropped.
+    config = function(plugin, opts)
+      require('kickstart.plugins.lspconfig')[1].config(plugin, opts)
+
       local servers = {
         clangd = {},
         basedpyright = {
