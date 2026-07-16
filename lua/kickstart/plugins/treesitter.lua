@@ -29,8 +29,16 @@ return {
         -- in case there is no indent query, the indentexpr will fallback to the vim's built in one
         local has_indent_query = vim.treesitter.query.get(language, 'indents') ~= nil
 
+        -- Languages whose treesitter `indents` query is worse than vim's built-in indent file.
+        -- python: `indentkeys` contains `<:>`, so every typed colon re-runs indentexpr. On a
+        -- half-typed line the parse tree has an ERROR node and treesitter returns nonsense --
+        -- it de-indents `obs[:, 0]` inside an open call, mangles f-string format specs
+        -- (`f"{x:.4f}"`), and fails to dedent `else:`. Built-in python#GetIndent gets all three
+        -- right. Skipping the assignment leaves the ftplugin's indentexpr in place.
+        local prefer_builtin_indent = { python = true }
+
         -- enables treesitter based indentation
-        if has_indent_query then vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end
+        if has_indent_query and not prefer_builtin_indent[language] then vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end
       end
 
       local available_parsers = require('nvim-treesitter').get_available()
