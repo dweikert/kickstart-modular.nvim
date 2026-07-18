@@ -27,6 +27,13 @@ return {
         basedpyright = {
           settings = { autoImportCompletion = true },
         },
+        -- Settings for both live in lsp/*.lua, which nvim merges automatically.
+        ruff = {},
+        -- nvim-lspconfig ships lsp/ols.lua (cmd/filetypes/root_dir), so an empty
+        -- table is enough. ols formats via odinfmt internally and conform's
+        -- lsp_format='fallback' picks that up -- no odinfmt formatter needed.
+        -- Add init_options here if you start using custom collections.
+        ols = {},
       }
       for name, server in pairs(servers) do
         vim.lsp.config(name, server)
@@ -42,6 +49,7 @@ return {
           'basedpyright',
           'isort',
           'ruff',
+          'ols', -- Odin LSP; the mason package also installs the odinfmt binary
         },
       }
     end,

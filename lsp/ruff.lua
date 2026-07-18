@@ -1,20 +1,14 @@
+-- Ruff LSP for python. Enabled in lua/custom/plugins/lspconfig.lua.
+-- Merged into nvim's builtin lsp/ config lookup (`:help lsp-config`).
+--
+-- basedpyright also attaches to python and is the better hover/type source, so ruff's
+-- hover is switched off to avoid two overlapping popups. This used to be a top-level
+-- nvim_create_autocmd() call stuffed into element [1] of this table, which registered a
+-- global autocmd as a side effect of loading the file; on_attach does the same job here.
 return {
-  vim.api.nvim_create_autocmd('LspAttach', {
-    group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
-    callback = function(args)
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
-      if client == nil then
-        return
-      end
-      if client.name == 'ruff' then
-        -- Disable hover in favor of Pyright
-        client.server_capabilities.hoverProvider = false
-      end
-    end,
-    desc = 'LSP: Disable hover capability from Ruff',
-  }),
   cmd = { 'ruff', 'server' },
   filetypes = { 'python' },
+  on_attach = function(client) client.server_capabilities.hoverProvider = false end,
   init_options = {
     settings = {
       args = { '--select=E,F,W,I,N', '--extend-select=B,UP' },

@@ -13,6 +13,12 @@ return {
       require('kickstart.plugins.telescope')[1].config(plugin, opts)
 
       local builtin = require 'telescope.builtin'
+      -- Alias for muscle memory: kickstart already binds this picker to <leader>sk.
+      -- Replaces the old custom/plugins/cheatsheet.lua, which hand-parsed KEYBINDS.md
+      -- into a bespoke picker -- 100 lines that could only ever show what someone had
+      -- remembered to write down, and never buffer-local maps (LSP gr*, gitsigns
+      -- <leader>h*, ftplugin binds). builtin.keymaps reads the live map table.
+      vim.keymap.set('n', '<leader>?', builtin.keymaps, { desc = '[?] Search keymaps (live)' })
       vim.keymap.set('n', '<leader>SS', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>ss', ':LspClangdSwitchSourceHeader<CR>', { desc = 'Clangd [s]witch [s]ource/header' })
       vim.keymap.set('n', '<leader>sc', function()
