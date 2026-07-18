@@ -1,6 +1,7 @@
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'open netrw' })
+-- netrw's <leader>pv retired in favour of mini.files on `-` (custom/plugins/mini.lua).
+-- It was also an ambiguous prefix of <leader>p below, costing 'timeoutlen' per paste.
 
 -- Word-wrap aware j/k
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
