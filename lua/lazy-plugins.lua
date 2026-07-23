@@ -63,6 +63,20 @@ require('lazy').setup({
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
 }, { ---@diagnostic disable-line: missing-fields
+  -- lazy defaults to #cpus*2 concurrent git jobs (32 on this 16-core box) and every
+  -- job resolves github.com itself -- there is no local DNS cache here
+  -- (systemd-resolved is inactive), so the router gets ~40 simultaneous uncached
+  -- queries and drops some.
+  --
+  -- Evidence: failing fetches report "Could not resolve host: github.com" after
+  -- exactly 20085ms. glibc's resolver is 5s timeout x 2 attempts x 2 nameservers =
+  -- 20s, i.e. those queries got NO answer at all, from either nameserver -- while
+  -- both answer in ~0.2ms when idle. Dropped under load, not misconfigured.
+  concurrency = 8,
+  git = {
+    -- Default 120s. A fetch that burns 20s in DNS alone has little headroom left.
+    timeout = 300,
+  },
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
