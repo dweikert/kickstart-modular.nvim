@@ -50,6 +50,7 @@ return {
           'isort',
           'ruff',
           'ols', -- Odin LSP; the mason package also installs the odinfmt binary
+          'markdownlint', -- used by nvim-lint (kickstart/plugins/lint.lua) for markdown
         },
       }
     end,
